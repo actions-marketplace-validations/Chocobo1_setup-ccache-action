@@ -63,7 +63,7 @@ export async function getCcacheBinaryPath(): Promise<string> {
       case 'win32':
         switch (Core.getInput("windows_compile_environment")) {
           case 'msvc':
-            g_ccachePath = (await Exec.getExecOutput("where ccache", undefined, execOptions)).stdout.trim();
+            g_ccachePath = (await Exec.getExecOutput("where ccache", undefined, execOptions)).stdout.trim().split("\r\n")[0];
             break;
           case 'msys2':
             g_ccachePath = (await Exec.getExecOutput(platformExecWrap("which ccache"), undefined, execOptions)).stdout.trim();
